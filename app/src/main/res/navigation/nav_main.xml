@@ -1,5 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_main">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/listNotesFragment">
 
+    <fragment
+        android:id="@+id/listNotesFragment"
+        android:name="io.kartikcd.notepad.presentation.ui.listnotes.ListNotesFragment"
+        android:label="ToDo List"
+        tools:layout="@layout/fragment_list_notes" >
+        <action
+            android:id="@+id/gotoAddNotesFragment"
+            app:destination="@id/addNotesFragment"
+            app:enterAnim="@anim/anim_from_right"
+            app:exitAnim="@anim/anim_to_left"
+            app:popEnterAnim="@anim/anim_from_left"
+            app:popExitAnim="@anim/anim_to_right" />
+        <action
+            android:id="@+id/gotoUpdateNotesFragment"
+            app:destination="@id/updateNotesFragment"
+            app:enterAnim="@anim/anim_from_right"
+            app:exitAnim="@anim/anim_to_left"
+            app:popEnterAnim="@anim/anim_from_left"
+            app:popExitAnim="@anim/anim_to_right" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/addNotesFragment"
+        android:name="io.kartikcd.notepad.presentation.ui.addnotes.AddNotesFragment"
+        android:label="Add"
+        tools:layout="@layout/fragment_add_notes" >
+        <action
+            android:id="@+id/gotoListFragment"
+            app:destination="@id/listNotesFragment"
+            app:enterAnim="@anim/anim_from_left"
+            app:exitAnim="@anim/anim_to_right"
+            app:popUpTo="@id/listNotesFragment"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="false"/>
+    </fragment>
+    <fragment
+        android:id="@+id/updateNotesFragment"
+        android:name="io.kartikcd.notepad.presentation.ui.updatenotes.UpdateNotesFragment"
+        android:label="Update"
+        tools:layout="@layout/fragment_update_notes" >
+        <action
+            android:id="@+id/gotoListNotesFragment"
+            app:destination="@id/listNotesFragment"
+            app:enterAnim="@anim/anim_from_left"
+            app:exitAnim="@anim/anim_to_right"
+            app:popUpTo="@id/listNotesFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

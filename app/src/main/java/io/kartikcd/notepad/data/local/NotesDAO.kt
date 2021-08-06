@@ -1,9 +1,6 @@
 package io.kartikcd.notepad.data.local
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import io.kartikcd.notepad.data.models.Note
 import kotlinx.coroutines.flow.Flow
 
@@ -20,4 +17,10 @@ interface NotesDAO {
 
     @Query("SELECT * FROM notes WHERE priority!=1")
     fun getLowPriorityNotes(): Flow<List<Note>>
+
+    @Update
+    suspend fun updateNote(note: Note)
+
+    @Delete
+    suspend fun deleteNote(note: Note)
 }

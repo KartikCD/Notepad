@@ -8,4 +8,6 @@ interface NotepadRepository {
     fun getAllNotes(): Flow<List<Note>>
     fun getHighPriorityNotes(): Flow<List<Note>>
     fun getLowPriorityNotes(): Flow<List<Note>>
+    suspend fun updateNote(note: Note)
+    suspend fun deleteNote(note: Note)
 }

@@ -21,6 +21,9 @@
                 <item
                     android:id="@+id/menu_lowpriority"
                     android:title="Low" />
+                <item
+                    android:id="@+id/menu_all"
+                    android:title="All" />
             </menu>
         </item>
     </group>

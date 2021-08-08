@@ -9,6 +9,7 @@ import io.kartikcd.notepad.databinding.FragmentListNotesBinding
 class ListNotesFragment : Fragment() {
 
     private var _binding: FragmentListNotesBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -17,7 +18,7 @@ class ListNotesFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentListNotesBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
-        return _binding?.root
+        return binding.root
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

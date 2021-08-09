@@ -11,4 +11,5 @@ class MainActivityViewModel(
     private val listNotesUsecase: ListNotesUsecase,
     private val updateNoteUsecase: UpdateNoteUsecase
 ): ViewModel() {
+
 }

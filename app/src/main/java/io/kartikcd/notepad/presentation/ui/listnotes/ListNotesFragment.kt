@@ -3,6 +3,7 @@ package io.kartikcd.notepad.presentation.ui.listnotes
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import io.kartikcd.notepad.R
 import io.kartikcd.notepad.databinding.FragmentListNotesBinding
 
@@ -19,6 +20,13 @@ class ListNotesFragment : Fragment() {
         _binding = FragmentListNotesBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.buttonAddNotes.setOnClickListener {
+            findNavController().navigate(R.id.gotoAddNotesFragment)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

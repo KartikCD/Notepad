@@ -5,13 +5,19 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
+import io.kartikcd.notepad.MainActivity
 import io.kartikcd.notepad.R
+import io.kartikcd.notepad.data.models.Note
 import io.kartikcd.notepad.databinding.FragmentAddNotesBinding
+import io.kartikcd.notepad.presentation.ui.viewmodel.MainActivityViewModel
 
 class AddNotesFragment : Fragment() {
 
     private var _binding: FragmentAddNotesBinding? = null
     private val binding get() = _binding!!
+    private lateinit var viewModel: MainActivityViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +31,7 @@ class AddNotesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = (activity as MainActivity).viewModel
         setupTextWatcherListener()
     }
 
@@ -35,7 +42,6 @@ class AddNotesFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_save) {
-            println("Debug: Button clicked.")
             saveButtonClicked()
         }
         return super.onOptionsItemSelected(item)
@@ -43,7 +49,22 @@ class AddNotesFragment : Fragment() {
 
     private fun saveButtonClicked() {
         if (isValidate()) {
-            println("Debug: Button clicked.")
+            binding.apply {
+                var priorityBool = false
+                priorityBool = prioritySpinner.selectedItem.toString().equals("High Priority")
+                val note = Note(
+                    name = titleText.text.toString(),
+                    priority = priorityBool,
+                    body = bodyText.text.toString()
+                )
+                viewModel.saveNotesToLocalDatabase(note)
+                Snackbar.make(
+                    requireView(),
+                    "Notes added successfully.",
+                    Snackbar.LENGTH_LONG
+                ).show()
+                findNavController().navigate(R.id.gotoListFragment)
+            }
         }
     }
 

@@ -1,7 +1,10 @@
 package io.kartikcd.notepad.presentation.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import io.kartikcd.notepad.data.models.Note
 import io.kartikcd.notepad.domain.usecase.*
+import kotlinx.coroutines.launch
 
 class MainActivityViewModel(
     private val createNoteUsecase: CreateNoteUsecase,
@@ -11,5 +14,9 @@ class MainActivityViewModel(
     private val listNotesUsecase: ListNotesUsecase,
     private val updateNoteUsecase: UpdateNoteUsecase
 ): ViewModel() {
-
+    fun saveNotesToLocalDatabase(note: Note) {
+        viewModelScope.launch {
+            createNoteUsecase.execute(note)
+        }
+    }
 }

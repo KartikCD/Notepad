@@ -12,4 +12,5 @@ interface NotepadLocalDataSource {
     suspend fun deleteNote(note: Note)
     fun getSearchNotes(searchQuery: String): Flow<List<Note>>
     suspend fun deleteAllNotes()
+    suspend fun getNoteById(id: Int): Note
 }

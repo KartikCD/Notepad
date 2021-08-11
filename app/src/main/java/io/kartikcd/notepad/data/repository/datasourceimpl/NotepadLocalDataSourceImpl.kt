@@ -39,4 +39,8 @@ class NotepadLocalDataSourceImpl(
     override suspend fun deleteAllNotes() {
         notesDAO.deleteAllNotes()
     }
+
+    override suspend fun getNoteById(id: Int): Note {
+        return notesDAO.getNoteById(id)
+    }
 }

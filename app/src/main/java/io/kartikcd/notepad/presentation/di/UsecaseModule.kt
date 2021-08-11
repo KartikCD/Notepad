@@ -59,4 +59,10 @@ class UsecaseModule {
     fun provideDeleteAllNotesUsecase(notepadRepository: NotepadRepository): DeleteAllNotesUsecase {
         return DeleteAllNotesUsecase(notepadRepository)
     }
+
+    @Provides
+    @Singleton
+    fun provideGetNoteByIdUsecase(notepadRepository: NotepadRepository): GetNoteByIdUsecase {
+        return GetNoteByIdUsecase(notepadRepository)
+    }
 }

@@ -13,6 +13,8 @@ import io.kartikcd.notepad.databinding.LayoutListNotesBinding
 
 class NotesListAdapter: ListAdapter<Note, NotesListAdapter.NoteListViewHolder>(NoteDiffCallback) {
 
+    private var onNotesClickListener: ((Note) -> Unit) ?= null
+
     inner class NoteListViewHolder(
         val binding: LayoutListNotesBinding
     ): RecyclerView.ViewHolder(binding.root) {
@@ -25,8 +27,17 @@ class NotesListAdapter: ListAdapter<Note, NotesListAdapter.NoteListViewHolder>(N
                 } else {
                     priorityIndicator.setCardBackgroundColor(Color.GREEN)
                 }
+                root.setOnClickListener {
+                    onNotesClickListener?.let {
+                        it(note)
+                    }
+                }
             }
         }
+    }
+
+    fun setOnNoteClickListener(listener: (Note) -> Unit){
+        onNotesClickListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteListViewHolder {

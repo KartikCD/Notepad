@@ -40,4 +40,8 @@ class NotepadRepositoryImpl(
     override suspend fun deleteAllNotes() {
         notepadLocalDataSource.deleteAllNotes()
     }
+
+    override suspend fun getNotesByID(id: Int): Note {
+        return notepadLocalDataSource.getNoteById(id)
+    }
 }

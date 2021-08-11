@@ -12,4 +12,5 @@ interface NotepadRepository {
     suspend fun deleteNote(note: Note)
     fun getSearchNotes(searchQuery: String): Flow<List<Note>>
     suspend fun deleteAllNotes()
+    suspend fun getNotesByID(id: Int): Note
 }

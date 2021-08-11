@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
 import android.widget.SearchView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -72,6 +73,11 @@ class ListNotesFragment : Fragment(), SearchView.OnQueryTextListener, SearchView
 
         ItemTouchHelper(itemTouchHelperCallback).apply {
             attachToRecyclerView(binding.noteListRecyclerView)
+        }
+
+        noteListAdapter.setOnNoteClickListener {
+            val bundle = bundleOf("currentItemId" to it.id)
+            findNavController().navigate(R.id.gotoUpdateNotesFragment, bundle)
         }
 
         fetchAllNotes()

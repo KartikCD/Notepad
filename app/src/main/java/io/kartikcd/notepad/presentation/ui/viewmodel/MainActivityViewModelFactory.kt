@@ -12,11 +12,12 @@ class MainActivityViewModelFactory(
     private val listNotesUsecase: ListNotesUsecase,
     private val updateNoteUsecase: UpdateNoteUsecase,
     private val searchNoteUsecase: SearchNoteUsecase,
-    private val deleteAllNotesUsecase: DeleteAllNotesUsecase
+    private val deleteAllNotesUsecase: DeleteAllNotesUsecase,
+    private val getNoteByIdUsecase: GetNoteByIdUsecase
 ): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return MainActivityViewModel(
-            createNoteUsecase, deleteNoteUsecase, listHighPriorityNoteUsecase, listLowPriorityNoteUsecase, listNotesUsecase, updateNoteUsecase, searchNoteUsecase, deleteAllNotesUsecase
+            createNoteUsecase, deleteNoteUsecase, listHighPriorityNoteUsecase, listLowPriorityNoteUsecase, listNotesUsecase, updateNoteUsecase, searchNoteUsecase, deleteAllNotesUsecase, getNoteByIdUsecase
         ) as T
     }
 }

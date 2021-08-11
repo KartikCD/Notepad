@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/listNotesFragment"
         android:name="io.kartikcd.notepad.presentation.ui.listnotes.ListNotesFragment"
-        android:label="ToDo List"
+        android:label="Notes List"
         tools:layout="@layout/fragment_list_notes" >
         <action
             android:id="@+id/gotoAddNotesFragment"
@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/addNotesFragment"
         android:name="io.kartikcd.notepad.presentation.ui.addnotes.AddNotesFragment"
-        android:label="Add"
+        android:label="Add Notes"
         tools:layout="@layout/fragment_add_notes" >
         <action
             android:id="@+id/gotoListFragment"
@@ -43,7 +43,7 @@
     <fragment
         android:id="@+id/updateNotesFragment"
         android:name="io.kartikcd.notepad.presentation.ui.updatenotes.UpdateNotesFragment"
-        android:label="Update"
+        android:label="Update Notes"
         tools:layout="@layout/fragment_update_notes" >
         <action
             android:id="@+id/gotoListNotesFragment"
@@ -52,5 +52,8 @@
             app:exitAnim="@anim/anim_to_right"
             app:popUpTo="@id/listNotesFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="currentItemId"
+            app:argType="integer" />
     </fragment>
 </navigation>

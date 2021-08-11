@@ -20,10 +20,11 @@ class FactoryModule {
         listLowPriorityNoteUsecase: ListLowPriorityNoteUsecase,
         listNotesUsecase: ListNotesUsecase,
         updateNoteUsecase: UpdateNoteUsecase,
-        searchNoteUsecase: SearchNoteUsecase
+        searchNoteUsecase: SearchNoteUsecase,
+        deleteAllNotesUsecase: DeleteAllNotesUsecase
     ): MainActivityViewModelFactory {
         return MainActivityViewModelFactory(
-            createNoteUsecase, deleteNoteUsecase, listHighPriorityNoteUsecase, listLowPriorityNoteUsecase, listNotesUsecase, updateNoteUsecase, searchNoteUsecase
+            createNoteUsecase, deleteNoteUsecase, listHighPriorityNoteUsecase, listLowPriorityNoteUsecase, listNotesUsecase, updateNoteUsecase, searchNoteUsecase, deleteAllNotesUsecase
         )
     }
 }

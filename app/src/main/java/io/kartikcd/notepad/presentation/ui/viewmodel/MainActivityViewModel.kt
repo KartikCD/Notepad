@@ -15,7 +15,8 @@ class MainActivityViewModel(
     private val listLowPriorityNoteUsecase: ListLowPriorityNoteUsecase,
     private val listNotesUsecase: ListNotesUsecase,
     private val updateNoteUsecase: UpdateNoteUsecase,
-    private val searchNoteUsecase: SearchNoteUsecase
+    private val searchNoteUsecase: SearchNoteUsecase,
+    private val deleteAllNotesUsecase: DeleteAllNotesUsecase
 ): ViewModel() {
     fun saveNotesToLocalDatabase(note: Note) {
         viewModelScope.launch {
@@ -54,6 +55,12 @@ class MainActivityViewModel(
     fun deleteNoteFromLocalDatabase(note: Note) {
         viewModelScope.launch {
             deleteNoteUsecase.execute(note)
+        }
+    }
+
+    fun deleteAllNotesFromLocalDatabase() {
+        viewModelScope.launch {
+            deleteAllNotesUsecase.execute()
         }
     }
 }

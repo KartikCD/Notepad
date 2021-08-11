@@ -26,4 +26,7 @@ interface NotesDAO {
 
     @Query("SELECT * FROM notes WHERE name LIKE :searchQuery")
     fun searchDatabase(searchQuery: String): Flow<List<Note>>
+
+    @Query("DELETE FROM notes")
+    suspend fun deleteAllNotes()
 }

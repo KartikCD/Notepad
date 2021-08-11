@@ -1,5 +1,6 @@
 package io.kartikcd.notepad.presentation.ui.listnotes
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
 import android.widget.SearchView
@@ -143,6 +144,9 @@ class ListNotesFragment : Fragment(), SearchView.OnQueryTextListener, SearchView
             R.id.menu_all -> {
                 fetchAllNotes()
             }
+            R.id.menu_deleteall -> {
+                deleteAllNotes()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -179,6 +183,19 @@ class ListNotesFragment : Fragment(), SearchView.OnQueryTextListener, SearchView
             fetchLowPriorityNotes()
         }
         return true
+    }
+
+    private fun deleteAllNotes() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Delete Everything")
+        builder.setMessage("Are you sure you want to delete all notes?")
+        builder.setPositiveButton("Yes") {_, _ ->
+            viewModel.deleteAllNotesFromLocalDatabase()
+            Snackbar.make(requireView(), "Successfully removed all notes.", Snackbar.LENGTH_LONG)
+                .show()
+        }
+        builder.setNegativeButton("No") {_, _ -> }
+        builder.create().show()
     }
 
 }

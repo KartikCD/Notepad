@@ -1,9 +1,11 @@
 package io.kartikcd.notepad.presentation.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import io.kartikcd.notepad.data.models.Note
 import io.kartikcd.notepad.domain.usecase.*
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MainActivityViewModel(
@@ -19,4 +21,25 @@ class MainActivityViewModel(
             createNoteUsecase.execute(note)
         }
     }
+
+    fun fetchNotesFromLocalDatabase() =
+        liveData {
+            listNotesUsecase.execute().collect {
+                emit(it)
+            }
+        }
+
+    fun fetchHighPriorityNotesFromLocalDatabase() =
+        liveData {
+            listHighPriorityNoteUsecase.execute().collect {
+                emit(it)
+            }
+        }
+
+    fun fetchLowPriorityNotesFromLocalDatabase() =
+        liveData {
+            listLowPriorityNoteUsecase.execute().collect {
+                emit(it)
+            }
+        }
 }

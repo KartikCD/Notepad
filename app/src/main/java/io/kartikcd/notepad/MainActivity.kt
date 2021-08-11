@@ -8,6 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.kartikcd.notepad.databinding.ActivityMainBinding
+import io.kartikcd.notepad.presentation.adapter.NotesListAdapter
 import io.kartikcd.notepad.presentation.ui.viewmodel.MainActivityViewModel
 import io.kartikcd.notepad.presentation.ui.viewmodel.MainActivityViewModelFactory
 import javax.inject.Inject
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     @Inject
     lateinit var factory: MainActivityViewModelFactory
+    @Inject
+    lateinit var adapter: NotesListAdapter
     lateinit var viewModel: MainActivityViewModel
 
     private var _binding: ActivityMainBinding? = null

@@ -9,13 +9,13 @@ interface NotesDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(note: Note)
 
-    @Query("SELECT * FROM notes")
+    @Query("SELECT * FROM notes order by id desc")
     fun getAllNotes(): Flow<List<Note>>
 
-    @Query("SELECT * FROM notes WHERE priority=1")
+    @Query("SELECT * FROM notes order by priority desc, name")
     fun getHighPriorityNotes(): Flow<List<Note>>
 
-    @Query("SELECT * FROM notes WHERE priority!=1")
+    @Query("SELECT * FROM notes order by priority asc, name")
     fun getLowPriorityNotes(): Flow<List<Note>>
 
     @Update

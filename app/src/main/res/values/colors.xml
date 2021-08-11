@@ -11,4 +11,6 @@
     <color name="strokeColor">#599CDF</color>
     <color name="lightgrey">#434343</color>
     <color name="lightGray">#E6E6E6</color>
+    <color name="high_priority">#D50A0A</color>
+    <color name="low_priority">#5BCD1E</color>
 </resources>

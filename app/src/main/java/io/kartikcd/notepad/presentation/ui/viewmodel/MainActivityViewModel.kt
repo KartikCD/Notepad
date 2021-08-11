@@ -14,7 +14,8 @@ class MainActivityViewModel(
     private val listHighPriorityNoteUsecase: ListHighPriorityNoteUsecase,
     private val listLowPriorityNoteUsecase: ListLowPriorityNoteUsecase,
     private val listNotesUsecase: ListNotesUsecase,
-    private val updateNoteUsecase: UpdateNoteUsecase
+    private val updateNoteUsecase: UpdateNoteUsecase,
+    private val searchNoteUsecase: SearchNoteUsecase
 ): ViewModel() {
     fun saveNotesToLocalDatabase(note: Note) {
         viewModelScope.launch {
@@ -42,4 +43,17 @@ class MainActivityViewModel(
                 emit(it)
             }
         }
+
+    fun fetchSearchNotesFromLocalDatabase(searchQuery: String) =
+        liveData {
+            searchNoteUsecase.execute(searchQuery).collect {
+                emit(it)
+            }
+        }
+
+    fun deleteNoteFromLocalDatabase(note: Note) {
+        viewModelScope.launch {
+            deleteNoteUsecase.execute(note)
+        }
+    }
 }

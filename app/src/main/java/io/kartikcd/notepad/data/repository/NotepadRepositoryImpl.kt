@@ -32,4 +32,8 @@ class NotepadRepositoryImpl(
     override suspend fun deleteNote(note: Note) {
         notepadLocalDataSource.deleteNote(note)
     }
+
+    override fun getSearchNotes(searchQuery: String): Flow<List<Note>> {
+        return notepadLocalDataSource.getSearchNotes(searchQuery)
+    }
 }

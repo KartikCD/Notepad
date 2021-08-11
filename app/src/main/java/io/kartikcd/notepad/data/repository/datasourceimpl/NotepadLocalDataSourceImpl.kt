@@ -31,4 +31,8 @@ class NotepadLocalDataSourceImpl(
     override suspend fun deleteNote(note: Note) {
         notesDAO.deleteNote(note)
     }
+
+    override fun getSearchNotes(searchQuery: String): Flow<List<Note>> {
+        return notesDAO.searchDatabase(searchQuery)
+    }
 }

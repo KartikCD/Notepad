@@ -47,4 +47,10 @@ class UsecaseModule {
     fun provideUpdateNoteUsecase(notepadRepository: NotepadRepository): UpdateNoteUsecase {
         return UpdateNoteUsecase(notepadRepository)
     }
+
+    @Provides
+    @Singleton
+    fun provideSearchNoteUsecase(notepadRepository: NotepadRepository): SearchNoteUsecase {
+        return SearchNoteUsecase(notepadRepository)
+    }
 }

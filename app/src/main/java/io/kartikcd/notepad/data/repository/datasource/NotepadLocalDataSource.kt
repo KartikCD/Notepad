@@ -10,4 +10,5 @@ interface NotepadLocalDataSource {
     fun getLowPriorityNotes(): Flow<List<Note>>
     suspend fun updateNote(note: Note)
     suspend fun deleteNote(note: Note)
+    fun getSearchNotes(searchQuery: String): Flow<List<Note>>
 }
